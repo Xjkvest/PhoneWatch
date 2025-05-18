@@ -1,4 +1,4 @@
-[![Sector Alarm](https://github.com/gjohansson-ST/sector/blob/master/logos/logo.png)](https://www.sectoralarm.se/)
+[![Sector Alarm](https://github.com/gjohansson-ST/sector/blob/master/logos/logo.png)](https://www.phonewatch.ie/)
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge&cacheSeconds=3600)](https://github.com/hacs/integration)
 [![size_badge](https://img.shields.io/github/repo-size/gjohansson-ST/sector?style=for-the-badge&cacheSeconds=3600)](https://github.com/gjohansson-ST/sector)
@@ -15,19 +15,19 @@
 
 # Integratation to Sector Alarm
 ---
-**Title:** "Sector Alarm"
+**Title:** "Phone Watch Alarm"
 
-**Description:** "Support for Sector Alarm integration with Homeassistant."
+**Description:** "Support for Phone Watch Alarm integration with Homeassistant."
 
 **Date created:** 2020-04-29
 
-**Last update:** 2023-11-04
+**Last update:** 2025-05-18
 
 **Required HA version:** 2024.11.0
 
 ---
 
-Integrates with Swedish Sector Alarm home alarm system (most likely works in all countries serviced by Sector Alarm).
+Integrates with Swedish Sector Alarm home alarm system (works with Ireland's Phone Watch Alarm).
 Currently implements Alarm panel, Locks, Temperature and Smartplugs
 
 **NOTE**
@@ -66,8 +66,8 @@ Restart before proceeding
 
 ## Activate integration in HA
 
-[![Add integrations](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start?domain=sector)
+[![Add integrations](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start?domain=phonewatch)
 
-After installation go to "Integrations" page in HA, press + and search for Sector Alarm
+After installation go to "Integrations" page in HA, press + and search for Phone Watch Alarm
 Follow onscreen information to type username, password, code etc.
 No restart needed
