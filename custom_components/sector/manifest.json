@@ -1,11 +1,11 @@
 {
-  "domain": "sector",
-  "name": "Sector Alarm",
+  "domain": "phonewatch",
+  "name": "Phone Watch Alarm",
   "codeowners": ["@gjohansson-ST", "@garnser"],
   "config_flow": true,
   "documentation": "https://github.com/gjohansson-ST/sector/blob/master/readme.md",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/gjohansson-ST/sector/issues",
-  "version": "1.0.0"
+  "version": "1.0.0 forked with updates for HASS 2025.10"
 }
