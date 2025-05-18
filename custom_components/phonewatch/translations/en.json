@@ -8,7 +8,7 @@
     },
     "select_panel": {
       "title": "Select alarm panel",
-      "description": "Choose which panel you’d like to connect."
+      "description": "Choose which panel you'd like to connect."
     },
     "reauth_confirm": {
       "title": "Reauthenticate Phone Watch",
@@ -30,7 +30,14 @@
       "title": "Configure options",
       "description": "Optional settings for your panel.",
       "data": {
-        "code_format": "Code length"
+        "code_format": "Code length",
+        "fetch_temperatures": "Fetch temperature sensors (may be slow)",
+        "fetch_humidity": "Fetch humidity sensors",
+        "fetch_leakage_detectors": "Fetch leakage detectors",
+        "fetch_smoke_detectors": "Fetch smoke detectors",
+        "fetch_doors_windows": "Fetch doors and windows",
+        "fetch_cameras": "Fetch cameras",
+        "fetch_smartplugs": "Fetch smart plugs"
       }
     }
   }

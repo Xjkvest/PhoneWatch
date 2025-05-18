@@ -36,17 +36,31 @@ On alarm installation which are not wired make sure you take the binary sensor "
 
 The entity for alarm panel will only update it's state on alarms which are online
 
+## Features
+
+- Improved token handling with automatic refresh (reduces API calls)
+- Exponential backoff retry for improved reliability
+- Selective data fetching for better performance
+- Comprehensive error handling
+
 ## Configuration Options
 
 Set once:
 
 - Username: Your e-mail address linked to Sector Alarm account
 - Password: Password used for app or Sector website
-- Enable Temp sensors (Not recommended and turned off by default due to long api response time)
 
 Options that you can change at any time:
 
 - Code Format: Number of digits in code
+- Selective Data Fetching: Enable/disable fetching of specific sensor types to optimize performance
+  - Temperature Sensors (off by default due to slow API response)
+  - Humidity Sensors
+  - Leakage Detectors
+  - Smoke Detectors
+  - Doors and Windows
+  - Cameras
+  - Smart Plugs
 
 ## Installation
 
@@ -58,9 +72,9 @@ Use [HACS](https://hacs.xyz/) to install
 
 Below config-folder create a new folder called`custom_components` if not already exist.
 
-Below new `custom_components` folder create a new folder called `sector`
+Below new `custom_components` folder create a new folder called `phonewatch`
 
-Upload the files/folders in `custom_components/sector` directory to the newly created folder.
+Upload the files/folders in `custom_components/phonewatch` directory to the newly created folder.
 
 Restart before proceeding
 

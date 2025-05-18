@@ -42,7 +42,14 @@
         "title": "Konfigurera alternativ",
         "description": "Valfria inställningar för din panel.",
         "data": {
-          "code_format": "Kodlängd"
+          "code_format": "Kodlängd",
+          "fetch_temperatures": "Hämta temperatursensorer (kan vara långsam)",
+          "fetch_humidity": "Hämta fuktighetssensorer",
+          "fetch_leakage_detectors": "Hämta läckagesensorer",
+          "fetch_smoke_detectors": "Hämta rökdetektorer",
+          "fetch_doors_windows": "Hämta dörrar och fönster",
+          "fetch_cameras": "Hämta kameror",
+          "fetch_smartplugs": "Hämta smarta uttag"
         }
       }
     }

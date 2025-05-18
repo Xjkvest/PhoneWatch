@@ -14,6 +14,7 @@ from homeassistant.config_entries import (
 )
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 from homeassistant.helpers.selector import (
+    BooleanSelector,
     NumberSelector,
     NumberSelectorConfig,
     NumberSelectorMode,
@@ -27,7 +28,25 @@ from homeassistant.helpers.selector import (
 )
 
 from .client import AuthenticationError, SectorAlarmAPI
-from .const import CONF_CODE_FORMAT, CONF_PANEL_ID, DOMAIN
+from .const import (
+    CONF_CODE_FORMAT,
+    CONF_FETCH_CAMERAS,
+    CONF_FETCH_DOORS_WINDOWS,
+    CONF_FETCH_HUMIDITY,
+    CONF_FETCH_LEAKAGE,
+    CONF_FETCH_SMARTPLUGS,
+    CONF_FETCH_SMOKE,
+    CONF_FETCH_TEMPERATURES,
+    CONF_PANEL_ID,
+    DEFAULT_FETCH_CAMERAS,
+    DEFAULT_FETCH_DOORS_WINDOWS,
+    DEFAULT_FETCH_HUMIDITY,
+    DEFAULT_FETCH_LEAKAGE,
+    DEFAULT_FETCH_SMARTPLUGS,
+    DEFAULT_FETCH_SMOKE,
+    DEFAULT_FETCH_TEMPERATURES,
+    DOMAIN,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -48,6 +67,25 @@ DATA_SCHEMA_OPTIONS = vol.Schema(
         vol.Optional(CONF_CODE_FORMAT, default=6): NumberSelector(
             NumberSelectorConfig(min=0, max=6, step=1, mode=NumberSelectorMode.BOX)
         ),
+        vol.Optional(
+            CONF_FETCH_TEMPERATURES, default=DEFAULT_FETCH_TEMPERATURES
+        ): BooleanSelector(),
+        vol.Optional(
+            CONF_FETCH_HUMIDITY, default=DEFAULT_FETCH_HUMIDITY
+        ): BooleanSelector(),
+        vol.Optional(
+            CONF_FETCH_LEAKAGE, default=DEFAULT_FETCH_LEAKAGE
+        ): BooleanSelector(),
+        vol.Optional(CONF_FETCH_SMOKE, default=DEFAULT_FETCH_SMOKE): BooleanSelector(),
+        vol.Optional(
+            CONF_FETCH_DOORS_WINDOWS, default=DEFAULT_FETCH_DOORS_WINDOWS
+        ): BooleanSelector(),
+        vol.Optional(
+            CONF_FETCH_CAMERAS, default=DEFAULT_FETCH_CAMERAS
+        ): BooleanSelector(),
+        vol.Optional(
+            CONF_FETCH_SMARTPLUGS, default=DEFAULT_FETCH_SMARTPLUGS
+        ): BooleanSelector(),
     }
 )
 
@@ -130,6 +168,13 @@ class SectorAlarmConfigFlow(ConfigFlow, domain=DOMAIN):
                         },
                         options={
                             CONF_CODE_FORMAT: self.code_format,
+                            CONF_FETCH_TEMPERATURES: DEFAULT_FETCH_TEMPERATURES,
+                            CONF_FETCH_HUMIDITY: DEFAULT_FETCH_HUMIDITY,
+                            CONF_FETCH_LEAKAGE: DEFAULT_FETCH_LEAKAGE,
+                            CONF_FETCH_SMOKE: DEFAULT_FETCH_SMOKE,
+                            CONF_FETCH_DOORS_WINDOWS: DEFAULT_FETCH_DOORS_WINDOWS,
+                            CONF_FETCH_CAMERAS: DEFAULT_FETCH_CAMERAS,
+                            CONF_FETCH_SMARTPLUGS: DEFAULT_FETCH_SMARTPLUGS,
                         },
                     )
                 else:
@@ -165,6 +210,13 @@ class SectorAlarmConfigFlow(ConfigFlow, domain=DOMAIN):
                 },
                 options={
                     CONF_CODE_FORMAT: self.code_format,
+                    CONF_FETCH_TEMPERATURES: DEFAULT_FETCH_TEMPERATURES,
+                    CONF_FETCH_HUMIDITY: DEFAULT_FETCH_HUMIDITY,
+                    CONF_FETCH_LEAKAGE: DEFAULT_FETCH_LEAKAGE,
+                    CONF_FETCH_SMOKE: DEFAULT_FETCH_SMOKE,
+                    CONF_FETCH_DOORS_WINDOWS: DEFAULT_FETCH_DOORS_WINDOWS,
+                    CONF_FETCH_CAMERAS: DEFAULT_FETCH_CAMERAS,
+                    CONF_FETCH_SMARTPLUGS: DEFAULT_FETCH_SMARTPLUGS,
                 },
             )
 

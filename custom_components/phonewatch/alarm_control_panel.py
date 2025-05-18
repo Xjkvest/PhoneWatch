@@ -1,4 +1,4 @@
-"""Alarm Control Panel for Sector Alarm integration."""
+"""Alarm Control Panel for Phone Watch Alarm integration."""
 
 from __future__ import annotations
 
@@ -34,13 +34,13 @@ async def async_setup_entry(
     entry: SectorAlarmConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up the Sector Alarm control panel."""
+    """Set up the Phone Watch Alarm control panel."""
     coordinator = entry.runtime_data
-    async_add_entities([SectorAlarmControlPanel(coordinator)])
+    async_add_entities([PhoneWatchAlarmControlPanel(coordinator)])
 
 
-class SectorAlarmControlPanel(SectorAlarmBaseEntity, AlarmControlPanelEntity):
-    """Representation of the Sector Alarm control panel."""
+class PhoneWatchAlarmControlPanel(SectorAlarmBaseEntity, AlarmControlPanelEntity):
+    """Representation of the Phone Watch Alarm control panel."""
 
     _attr_name = None
     _attr_supported_features = (
@@ -55,13 +55,13 @@ class SectorAlarmControlPanel(SectorAlarmBaseEntity, AlarmControlPanelEntity):
         super().__init__(
             coordinator,
             coordinator.config_entry.data[CONF_PANEL_ID],
-            "Sector Alarm Panel",
+            "Phone Watch Alarm Panel",
             "Alarm panel",
         )
 
         self._attr_unique_id = f"{self._serial_no}_alarm_panel"
         _LOGGER.debug(
-            "Initialized Sector Alarm Control Panel with ID %s", self._attr_unique_id
+            "Initialized Phone Watch Alarm Control Panel with ID %s", self._attr_unique_id
         )
 
     @property
