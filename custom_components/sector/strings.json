@@ -1,41 +1,36 @@
-{
-    "config": {
-        "abort": {
-            "already_configured": "Account is already configured",
-            "reauth_successful": "Reauthentication successful"
-        },
-        "error": {
-            "authentication_failed": "Username and/or password is incorrect",
-            "unknown_error": "Failed to connect"
-        },
-        "step": {
-            "user": {
-                "data": {
-                    "email": "E-mail address",
-                    "password": "Password",
-                    "code_format": "Code length"
-                }
-            },
-            "select_panel": {
-                "data": {
-                    "panel_id": "Panel ID"
-                }
-            },
-            "reauth_confirm": {
-                "data": {
-                    "email": "E-mail address",
-                    "password": "Password"
-                }
-            }
-        }
+"title": "Phone Watch Alarm",
+"config": {
+  "step": {
+    "user": {
+      "title": "Connect your Phone Watch account",
+      "description": "Enter your Phone Watch credentials to connect."
     },
-    "options": {
-        "step": {
-            "init": {
-                "data": {
-                    "code_format": "Code length"
-                }
-            }
-        }
+    "select_panel": {
+      "title": "Select alarm panel",
+      "description": "Choose which panel you’d like to connect."
+    },
+    "reauth_confirm": {
+      "title": "Reauthenticate Phone Watch",
+      "description": "Please confirm your credentials."
     }
+  },
+  "abort": {
+    "already_configured": "Account is already configured",
+    "reauth_successful": "Reauthentication successful"
+  },
+  "error": {
+    "authentication_failed": "Username and/or password is incorrect",
+    "unknown_error": "Failed to connect"
+  }
+},
+"options": {
+  "step": {
+    "init": {
+      "title": "Configure options",
+      "description": "Optional settings for your panel.",
+      "data": {
+        "code_format": "Code length"
+      }
+    }
+  }
 }
