@@ -1,41 +1,50 @@
 {
-    "config": {
-        "abort": {
-            "already_configured": "Kontot är redan konfigurerat",
-            "reauth_successful": "Omauthentisering lyckades"
-        },
-        "error": {
-            "authentication_failed": "Authentisering misslyckades",
-            "unknown_error": "Kunde inte ansluta"
-        },
-        "step": {
-            "user": {
-                "data": {
-                    "email": "Epost adress",
-                    "password": "Lösenord",
-                    "code_format": "Kodlängd"
-                }
-            },
-            "select_panel": {
-                "data": {
-                    "panel_id": "Panel ID"
-                }
-            },
-            "reauth_confirm": {
-                "data": {
-                    "email": "Epost adress",
-                    "password": "Lösenord"
-                }
-            }
-        }
+  "title": "Phone Watch Alarm",
+  "config": {
+    "abort": {
+      "already_configured": "Kontot är redan konfigurerat",
+      "reauth_successful": "Omauthentisering lyckades"
     },
-    "options": {
-        "step": {
-            "init": {
-                "data": {
-                    "code_format": "Kodlängd"
-                }
-            }
+    "error": {
+      "authentication_failed": "Autentisering misslyckades",
+      "unknown_error": "Kunde inte ansluta"
+    },
+    "step": {
+      "user": {
+        "title": "Anslut ditt Phone Watch-konto",
+        "description": "Ange dina inloggningsuppgifter för Phone Watch för att ansluta.",
+        "data": {
+          "email": "E-postadress",
+          "password": "Lösenord",
+          "code_format": "Kodlängd"
         }
+      },
+      "select_panel": {
+        "title": "Välj larmpanel",
+        "description": "Välj vilken panel du vill ansluta.",
+        "data": {
+          "panel_id": "Panel-ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Autentisera om Phone Watch",
+        "description": "Bekräfta dina inloggningsuppgifter.",
+        "data": {
+          "email": "E-postadress",
+          "password": "Lösenord"
+        }
+      }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Konfigurera alternativ",
+        "description": "Valfria inställningar för din panel.",
+        "data": {
+          "code_format": "Kodlängd"
+        }
+      }
+    }
+  }
 }
