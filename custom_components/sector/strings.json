@@ -1,3 +1,4 @@
+{
 "title": "Phone Watch Alarm",
 "config": {
   "step": {
@@ -33,4 +34,5 @@
       }
     }
   }
+}
 }
