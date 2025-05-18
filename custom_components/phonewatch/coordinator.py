@@ -2,7 +2,7 @@
 
 import logging
 from datetime import timedelta
-from typing import Any
+from typing import Any, TypeVar
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
@@ -10,12 +10,32 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .client import AuthenticationError, SectorAlarmAPI
-from .const import CATEGORY_MODEL_MAPPING, CONF_PANEL_ID, DOMAIN
+from .const import (
+    CATEGORY_MODEL_MAPPING,
+    CONF_FETCH_CAMERAS,
+    CONF_FETCH_DOORS_WINDOWS,
+    CONF_FETCH_HUMIDITY,
+    CONF_FETCH_LEAKAGE,
+    CONF_FETCH_SMARTPLUGS,
+    CONF_FETCH_SMOKE,
+    CONF_FETCH_TEMPERATURES,
+    CONF_PANEL_ID,
+    CONFIG_TO_ENDPOINT_MAP,
+    DEFAULT_FETCH_CAMERAS,
+    DEFAULT_FETCH_DOORS_WINDOWS,
+    DEFAULT_FETCH_HUMIDITY,
+    DEFAULT_FETCH_LEAKAGE,
+    DEFAULT_FETCH_SMARTPLUGS,
+    DEFAULT_FETCH_SMOKE,
+    DEFAULT_FETCH_TEMPERATURES,
+    DOMAIN,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
-# Make sure the SectorAlarmConfigEntry type is present
-type SectorAlarmConfigEntry = ConfigEntry[SectorDataUpdateCoordinator]
+# Define type for config entry
+T = TypeVar("T", bound=DataUpdateCoordinator)
+SectorAlarmConfigEntry = ConfigEntry[Any]  # Use Any instead of the explicit generic
 
 
 class SectorDataUpdateCoordinator(DataUpdateCoordinator):
@@ -26,12 +46,45 @@ class SectorDataUpdateCoordinator(DataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, entry: SectorAlarmConfigEntry) -> None:
         """Initialize the coordinator."""
         self.hass = hass
+        
+        # Get enabled endpoints from configuration options
+        enabled_endpoints = {
+            CONF_FETCH_TEMPERATURES: entry.options.get(
+                CONF_FETCH_TEMPERATURES, DEFAULT_FETCH_TEMPERATURES
+            ),
+            CONF_FETCH_HUMIDITY: entry.options.get(
+                CONF_FETCH_HUMIDITY, DEFAULT_FETCH_HUMIDITY
+            ),
+            CONF_FETCH_LEAKAGE: entry.options.get(
+                CONF_FETCH_LEAKAGE, DEFAULT_FETCH_LEAKAGE
+            ),
+            CONF_FETCH_SMOKE: entry.options.get(
+                CONF_FETCH_SMOKE, DEFAULT_FETCH_SMOKE
+            ),
+            CONF_FETCH_DOORS_WINDOWS: entry.options.get(
+                CONF_FETCH_DOORS_WINDOWS, DEFAULT_FETCH_DOORS_WINDOWS
+            ),
+            CONF_FETCH_CAMERAS: entry.options.get(
+                CONF_FETCH_CAMERAS, DEFAULT_FETCH_CAMERAS
+            ),
+            CONF_FETCH_SMARTPLUGS: entry.options.get(
+                CONF_FETCH_SMARTPLUGS, DEFAULT_FETCH_SMARTPLUGS
+            ),
+        }
+        
+        _LOGGER.debug("Enabled endpoints: %s", enabled_endpoints)
+        
         self.api = SectorAlarmAPI(
             hass=hass,
             email=entry.data[CONF_EMAIL],
             password=entry.data[CONF_PASSWORD],
             panel_id=entry.data[CONF_PANEL_ID],
+            enabled_endpoints=enabled_endpoints,
         )
+        
+        # Store event logs
+        self._event_logs = {}
+        
         super().__init__(
             hass,
             _LOGGER,
@@ -43,7 +96,7 @@ class SectorDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self) -> dict[str, Any]:
         """Fetch data from Sector Alarm API."""
         try:
-            await self.api.login()
+            # The API will now handle authentication as needed
             api_data = await self.api.retrieve_all_data()
             _LOGGER.debug("API ALL DATA: %s", api_data)
 
@@ -61,6 +114,10 @@ class SectorDataUpdateCoordinator(DataUpdateCoordinator):
             }
 
         except AuthenticationError as error:
+            _LOGGER.error("Authentication failed, will retry on next update: %s", error)
+            # Clear any stored token data to force a fresh login on next attempt
+            self.api.access_token = None
+            self.api.token_expiry = None
             raise UpdateFailed(f"Authentication failed: {error}") from error
         except Exception as error:
             _LOGGER.exception("Failed to update data")

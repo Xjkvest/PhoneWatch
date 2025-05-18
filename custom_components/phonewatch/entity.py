@@ -1,4 +1,4 @@
-"""Base entity for Sector Alarm integration."""
+"""Base entity for Phone Watch Alarm integration."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class SectorAlarmBaseEntity(CoordinatorEntity[SectorDataUpdateCoordinator]):
-    """Representation of a Sector Alarm base entity."""
+    """Representation of a Phone Watch Alarm base entity."""
 
     _attr_has_entity_name = True
 
@@ -43,7 +43,7 @@ class SectorAlarmBaseEntity(CoordinatorEntity[SectorDataUpdateCoordinator]):
         return DeviceInfo(
             identifiers={(DOMAIN, self._serial_no)},
             name=self.device_name,
-            manufacturer="Sector Alarm",
+            manufacturer="Phone Watch",
             model=self.device_model,
             serial_number=self._serial_no,
         )

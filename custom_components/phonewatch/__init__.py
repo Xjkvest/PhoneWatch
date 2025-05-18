@@ -1,4 +1,4 @@
-"""Sector Alarm integration for Home Assistant."""
+"""Phone Watch Alarm integration for Home Assistant."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: SectorAlarmConfigEntry) -> bool:
-    """Set up Sector Alarm from a config entry."""
+    """Set up Phone Watch Alarm from a config entry."""
     coordinator = SectorDataUpdateCoordinator(hass, entry)
     await coordinator.async_config_entry_first_refresh()
     entry.runtime_data = coordinator
@@ -35,7 +35,7 @@ async def async_update_listener(
 async def async_unload_entry(
     hass: HomeAssistant, entry: SectorAlarmConfigEntry
 ) -> bool:
-    """Unload a Sector Alarm config entry."""
+    """Unload a Phone Watch Alarm config entry."""
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
 
 
