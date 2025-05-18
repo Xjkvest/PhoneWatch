@@ -70,7 +70,7 @@ class SectorAlarmControlPanel(SectorAlarmBaseEntity, AlarmControlPanelEntity):
         status = self.coordinator.data.get("panel_status", {})
         if not status.get("IsOnline", True):
             return None
-
+    
         # Map status code to the appropriate Home Assistant state
         status_code = status.get("Status", 0)
         mapped_state = ALARM_STATE_TO_HA_STATE.get(status_code)
