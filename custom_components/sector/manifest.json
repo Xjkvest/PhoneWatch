@@ -1,5 +1,5 @@
 {
-  "domain": "phonewatch",
+  "domain": "sector",
   "name": "Phone Watch Alarm",
   "codeowners": ["@gjohansson-ST", "@garnser"],
   "config_flow": true,
