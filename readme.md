@@ -13,7 +13,7 @@
 [![Sponsor me](https://img.shields.io/badge/Sponsor-Me-blue?style=for-the-badge&logo=github)](https://github.com/sponsors/gjohansson-ST)
 [![Discord](https://img.shields.io/discord/872446427664625664?style=for-the-badge&label=Discord&cacheSeconds=3600)](https://discord.gg/EG7cWFQMGW)
 
-# Integratation to Sector Alarm
+# Integratation to Phone Watch Alarm
 ---
 **Title:** "Phone Watch Alarm"
 
